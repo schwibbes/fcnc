@@ -1,0 +1,28 @@
+$hostname: foo-bar.de
+
+#Task:clean-tmp
+%var:
+ - path='/tmp/foo'
+?run:
+ - state STARTUP 
+ - path-exists $path
+!run:
+ - clean-dir $path
+
+#Task:ensure-tomcat-running
+?run:
+ - @not proc-running 'tomcat8'
+!run:
+ - clean-dir '/tmp/tomcat-work/'
+ - launch 'service tomcat start'
+
+#Task:jdk-8-installed
+%var:
+ - local-zip='/tmp/jdk.zip'
+?run:
+ - @not parse-response 'java -version' 'jdk-1.8'
+!run:
+ - download-file 'http://foo/jdk.zip' $local-zip
+ - unzip-to $local-zip /opt/jdk/
++assert:
+ - parse-response 'java -version' 'jdk-1.8'

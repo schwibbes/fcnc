@@ -1,0 +1,12 @@
+$hostname: foo-bar.de
+
+#Task:clean-tmp
+%var:
+ - path='/tmp/foo'
+?run:
+ - state STARTUP 
+ - echo foo
+!run:
+ - echo bar
++assert:
+ - echo 'string in quotes'
