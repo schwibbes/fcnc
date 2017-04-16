@@ -45,7 +45,7 @@ func TestSimpleTask(t *testing.T) {
 
 }
 
-func TestSampleTask(t *testing.T) {
+func testSampleTask(t *testing.T) {
 
 	b, err := ioutil.ReadFile("sample.task")
 	require.Empty(t, err)
