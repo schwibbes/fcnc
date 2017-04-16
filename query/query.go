@@ -1,7 +1,5 @@
 package query
 
-import ()
-
 type QueryResult struct {
 	Ok  bool
 	Val string

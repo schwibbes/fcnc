@@ -10,6 +10,10 @@ import (
 	"testing"
 )
 
+func init() {
+	log.SetOutput(ioutil.Discard)
+}
+
 func TestSimpleTask(t *testing.T) {
 
 	b, err := ioutil.ReadFile("simple.task")
